@@ -15,16 +15,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-//
 const db = knex({
-  client: "postgres",
+  client: "pg",
   connection: {
-    host: "127.0.0.1",
-    user: "postgres",
-    password: "postGress@1904???",
-    database: "smart-brain"
+    connectString: process.env.DATABASE_URL,
+    ssl: true
   }
 });
+
+// const db = knex({
+//   client: "postgres",
+//   connection: {
+//     host: "127.0.0.1",
+//     user: "",
+//     password: "",
+//     database: "smart-brain"
+//   }
+// });
 
 app.get("/", (req, res) => {
   db.select("*")
@@ -46,6 +53,10 @@ app.get("/profile/:id", (req, res) => {
 
 app.put("/image", (req, res) => {
   image.handleImage(req, res, db);
+});
+
+app.post("/imageurl", (req, res) => {
+  image.handleApiCall(req, res);
 });
 
 app.listen(3000, () => {
