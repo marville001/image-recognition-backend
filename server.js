@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+//Heroku db
 const db = knex({
   client: "pg",
   connection: {
@@ -23,12 +24,13 @@ const db = knex({
   }
 });
 
+// local db
 // const db = knex({
 //   client: "postgres",
 //   connection: {
 //     host: "127.0.0.1",
-//     user: "",
-//     password: "",
+//     user: "postgres",
+//     password: "postGress@1904???",
 //     database: "smart-brain"
 //   }
 // });
