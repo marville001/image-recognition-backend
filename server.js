@@ -38,7 +38,7 @@ const db = knex({
 app.get("/", (req, res) => {
   db.select("*")
     .from("users")
-    .then(users => res.send(users));
+    .then(uses => res.send(uses));
 });
 
 app.post("/signin", (req, res) => {
